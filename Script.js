@@ -74,7 +74,6 @@ function disableCards() {
     updateScore();
     if (matches === cardsArray.length) {
         showMessage('Você venceu!');
-        localStorage.setItem('record', matchedPairs);
         saveGameState();
     }
 }
@@ -109,10 +108,3 @@ function showMessage(message) {
 function updateScore() {
     scoreBoard.textContent = `Pontos: ${score}`;
 }
-
-window.onload = function() {
-    let record = localStorage.getItem('record');
-    if (record) {
-        message.textContent = `Recorde: ${record} pares`;
-    }
-};
