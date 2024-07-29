@@ -74,6 +74,7 @@ function disableCards() {
     updateScore();
     if (matches === cardsArray.length) {
         showMessage('Você venceu!');
+        localStorage.setItem('record', matchedPairs);
         saveGameState();
     }
 }
@@ -115,23 +116,3 @@ window.onload = function() {
         message.textContent = `Recorde: ${record} pares`;
     }
 };
-
-/*
-function saveGameState() {
-    let gameState = {
-        matches: matches,
-        score: score
-    };
-    localStorage.setItem('memoryGameState', JSON.stringify(gameState));
-}
-
-function loadGameState() {
-    let gameState = JSON.parse(localStorage.getItem('memoryGameState'));
-    if (gameState) {
-        matches = gameState.matches;
-        score = gameState.score;
-        updateScore();
-    }
-}
-loadGameState();
-*/
