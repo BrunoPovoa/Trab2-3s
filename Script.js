@@ -22,6 +22,10 @@ let score = 0;
 startButton.addEventListener('click', startGame);
 restartButton.addEventListener('click', restartGame);
 
+document.addEventListener('DOMContentLoaded', () => {
+    loadGameState();
+});
+
 function startGame() {
     startButton.style.display = 'none';
     restartButton.style.display = 'block';
@@ -69,7 +73,7 @@ function disableCards() {
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
     resetBoard();
-    matches++;
+    matches+=2;
     score += 1;
     updateScore();
     if (matches === cardsArray.length) {
@@ -107,4 +111,17 @@ function showMessage(message) {
 
 function updateScore() {
     scoreBoard.textContent = `Pontos: ${score}`;
+}
+
+function saveGameState() {
+    localStorage.setItem('gameResult', JSON.stringify({ score: score, message: messageCard.textContent }));
+}
+
+function loadGameState() {
+    const savedState = localStorage.getItem('gameResult');
+    if (savedState) {
+        const { score, message } = JSON.parse(savedState);
+        scoreBoard.textContent = `Pontos: ${score}`;
+        showMessage(message);
+    }
 }
