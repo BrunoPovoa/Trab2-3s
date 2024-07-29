@@ -107,8 +107,9 @@ function showMessage(message) {
 
 function updateScore() {
     scoreBoard.textContent = `Pontos: ${score}`;
+    localStorage.setItem('record', matchedPairs);
 }
-/*
+
 function saveGameState() {
     let gameState = {
         matches: matches,
@@ -126,4 +127,10 @@ function loadGameState() {
     }
 }
 loadGameState();
-*/
+
+window.onload = function() {
+    let record = localStorage.getItem('record');
+    if (record) {
+        message.textContent = `Recorde: ${record} pares`;
+    }
+};
